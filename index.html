@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Resume Builder</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    }
+    .custom-form {
+      background-color: #ffffffee;
+    }
+    .custom-preview {
+      background: linear-gradient(to right, #a18cd1 0%, #fbc2eb 100%);
+      color: #2d3748;
+    }
+    .section-title {
+      color: #4a5568;
+    }
+    .button-primary {
+      background-color: #ff6f61;
+    }
+    .button-primary:hover {
+      background-color: #e85a4f;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen font-sans">
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-extrabold text-center mb-6 text-white drop-shadow-lg"> Interactive Resume Builder </h1>
+
+    <!-- Personal Information Form -->
+    <form id="resumeForm" class="custom-form p-6 rounded-3xl shadow-lg">
+      <h2 class="text-2xl font-bold section-title mb-4">👤 Personal Information</h2>
+
+      <div class="mb-4">
+        <label class="block font-semibold">Full Name</label>
+        <input type="text" name="name" class="w-full border p-3 rounded-lg shadow-sm" required />
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold">Email</label>
+        <input type="email" name="email" class="w-full border p-3 rounded-lg shadow-sm" required />
+      </div>
+      <div class="mb-4">
+        <label class="block font-semibold">Phone</label>
+        <input type="text" name="phone" class="w-full border p-3 rounded-lg shadow-sm" required />
+      </div>
+      <div class="mb-6">
+        <label class="block font-semibold">Summary</label>
+        <textarea name="summary" rows="3" class="w-full border p-3 rounded-lg shadow-sm" required></textarea>
+      </div>
+      <button type="submit" class="button-primary text-white font-semibold px-6 py-3 rounded-xl transition duration-300">Generate Resume</button>
+    </form>
+
+    <!-- Resume Preview -->
+    <div id="resumePreview" class="custom-preview mt-8 p-6 rounded-3xl shadow-xl hidden">
+      <h2 class="text-2xl font-bold mb-2" id="previewName"></h2>
+      <p class="mb-1 font-medium" id="previewEmail"></p>
+      <p class="mb-1 font-medium" id="previewPhone"></p>
+      <p class="italic" id="previewSummary"></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('resumeForm');
+    const preview = document.getElementById('resumePreview');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = form.name.value;
+      const email = form.email.value;
+      const phone = form.phone.value;
+      const summary = form.summary.value;
+
+      // Update preview
+      document.getElementById('previewName').textContent = name;
+      document.getElementById('previewEmail').textContent = email;
+      document.getElementById('previewPhone').textContent = phone;
+      document.getElementById('previewSummary').textContent = summary;
+
+      // Show preview
+      preview.classList.remove('hidden');
+    });
+  </script>
+</body>
+
+</html>
